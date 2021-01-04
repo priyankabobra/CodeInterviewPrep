@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
@@ -8,44 +7,48 @@ import java.util.Map.Entry;
 import java.util.*; 
 
 
-
 public class HelloWorld{
 
      public static void main(String []args){
          
 		//INITIAIZE
-        String para = "Bob ball, hit on the ball hit again hit.";
-        
-        // can use .toLowerCase for String here and replace (punct regex, string)
+        String para = "Bob ball, hit on the ball hit again hit";
         List<String> al = new ArrayList<String>();
 
-        //CREATE A IGNORE LIST
-        List<String> ignoreList = new ArrayList<String>();
-        ignoreList.add(",");
-        ignoreList.add(".");
-        ignoreList.add("!");
-        ignoreList.add("?");
 
+        //REPLACE puntuations with nothing
+        para = para.replaceAll("[^a-zA-Z]", " ").toLowerCase();
 
-        // STORE STRING IN ARRAYLIST
+        System.out.println("***************");
+        System.out.println("After removing puctuations -> " + para);
+        System.out.println("***************\n\n");
+        
+     
+
+        // STORE STRING IN ARRAYLIST - TOKENIZE ON SPACE
         String str[] = para.split(" ");
         al = Arrays.asList(str);
-        /*
+        
+        
+        System.out.println("***************");
+        System.out.println("Arraylist after tokenization -> ");
         for(String s: al){
             System.out.println(s);
         }
-        */
+        System.out.println("***************\n\n");
+        
 
 
         //ITERATE LIST AND STORE INTO MAP
         Map<String, Integer> hm = new HashMap<String, Integer>(); 
         for (String i : al) { 
-          // IGNORE STRING IF ITS IN THE IGNORE LIST
-          if (ignoreList.contains(i))
-              continue;
-
+        
+          //IGNORE WHITE SPACE
+          if (i == " ")
+            continue;
+          
           // CONVERT TO LOWER CASE
-          i = i.toLowerCase();
+         // i = i.toLowerCase();
 
           // INSERT THE HASH MAP
           Integer j = hm.get(i);
@@ -54,14 +57,16 @@ public class HelloWorld{
 
 
         //PRINT THE MAP -- NOT NECESSARY
-        /*
+        System.out.println("***************");
+        System.out.println("Count Hashmap -> ");
+
         for (Map.Entry<String, Integer> val : hm.entrySet()) { 
             System.out.println("Element " + val.getKey() + " "
                                + "occurs"
                                + ": " + val.getValue() + " times"); 
         } 
-        */
-
+        System.out.println("***************\n\n");
+        
         //FIND THE MOST FREQUENT WORD
         String maxKey = new String();
         int maxVal = 0;
@@ -71,7 +76,7 @@ public class HelloWorld{
             String currKey = val.getKey();
             int currVal = val.getValue();
           
-						//COMPARE WITH THE MAX SO FAR
+			//COMPARE WITH THE MAX SO FAR
             if (currVal >= maxVal)
             {
                 maxKey = currKey;
@@ -80,7 +85,13 @@ public class HelloWorld{
 
         } 
        
+        System.out.println("***************");
+        System.out.println("***************");
         System.out.println("Most frequently occuring word = " + maxKey);
+        System.out.println("***************");
+        System.out.println("***************");
+
 
       }
 }
+
