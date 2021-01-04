@@ -12,7 +12,7 @@ public class HelloWorld{
      public static void main(String []args){
          
 		//INITIAIZE
-        String para = "Bob ball, hit on the ball hit again hit";
+        String para = "Bob ball,         hit on the ball hit again hit";
         List<String> al = new ArrayList<String>();
 
 
@@ -42,13 +42,6 @@ public class HelloWorld{
         //ITERATE LIST AND STORE INTO MAP
         Map<String, Integer> hm = new HashMap<String, Integer>(); 
         for (String i : al) { 
-        
-          //IGNORE WHITE SPACE
-          if (i == " ")
-            continue;
-          
-          // CONVERT TO LOWER CASE
-         // i = i.toLowerCase();
 
           // INSERT THE HASH MAP
           Integer j = hm.get(i);
@@ -77,11 +70,17 @@ public class HelloWorld{
             int currVal = val.getValue();
           
 			//COMPARE WITH THE MAX SO FAR
-            if (currVal >= maxVal)
-            {
+			
+			//condition to check if there is space then don't add in maps
+			if(currKey.trim().length()>0){
+			    if (currVal >= maxVal)
+               {
+                    
                 maxKey = currKey;
                 maxVal = currVal;
-            }
+               }
+			}
+            
 
         } 
        
