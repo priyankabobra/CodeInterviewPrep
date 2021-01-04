@@ -15,6 +15,8 @@ public class HelloWorld{
          
 		//INITIAIZE
         String para = "Bob ball, hit on the ball hit again hit.";
+        
+        // can use .toLowerCase for String here and replace (punct regex, string)
         List<String> al = new ArrayList<String>();
 
         //CREATE A IGNORE LIST
