@@ -1,0 +1,67 @@
+//210. Course Schedule II
+class Solution {
+  
+
+    private List<Integer>[] g;
+    private int[] status;
+    private int[] result;
+    private int index;
+    private final int UNVISITED = 0, EXPLORING = 1, DONE = 2;
+    
+    
+    
+    public boolean hasCycle(int n)
+    {
+        for(int i=0 ; i<n; i++){
+            if(UNVISITED == status[i] && dfs(i))
+                return true;
+        }
+        
+        return false;
+    }
+    
+    public boolean dfs(int node)
+    {
+        if(status[node] == EXPLORING)
+            return true;
+        if(status[node] == DONE)
+            return false;
+        
+        status[node] =  EXPLORING;
+        for(int neighbour : g[node])
+        {
+            if(dfs(neighbour))
+                return true;
+        }
+       
+        
+        status[node] = DONE;
+        
+        result[--index] = node;
+        return false;
+        
+    }
+    
+    
+     public int[] findOrder(int n, int[][] pq) {
+ 
+         index = n;
+         status = new int[n];
+         result = new int[n];
+         g = new ArrayList[n];
+         
+          for(int i=0 ; i<n; i++)
+         {
+             g[i] = new ArrayList<>();
+         }
+         
+         for(int[] edge : pq)
+         {
+             int i = edge[0], j = edge[1];
+             g[j].add(i);
+         }
+         
+         return hasCycle(n)? new int[]{} : result;
+   
+     }
+}
