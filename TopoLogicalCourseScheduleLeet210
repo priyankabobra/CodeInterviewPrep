@@ -42,14 +42,18 @@ class Solution {
         
     }
     
-    
+    //Making graph
      public int[] findOrder(int n, int[][] pq) {
  
          index = n;
          status = new int[n];
          result = new int[n];
          g = new ArrayList[n];
+         //creating array inside arraylist
          
+         //it should be like against 0 , have all destinations. Against 1 have its destinations etc.
+         
+      
           for(int i=0 ; i<n; i++)
          {
              g[i] = new ArrayList<>();
